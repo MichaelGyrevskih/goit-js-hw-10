@@ -1,0 +1,1 @@
+.form input,.form fieldset,.form button{width:100%;box-sizing:border-box}input[type=number]{margin-bottom:10px}fieldset label{display:flex;align-items:center;gap:8px}fieldset{display:flex;gap:10px;margin-bottom:10px}.form{max-width:300px}
