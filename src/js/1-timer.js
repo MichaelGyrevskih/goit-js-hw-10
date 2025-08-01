@@ -10,11 +10,12 @@ const options = {
   dateFormat: "Y-m-d H:i",
   minuteIncrement: 1,
   onClose(selectedDates) {
-      console.log(selectedDates[0]);
-      if (selectedDates[0] === new Date() || selectedDates[0] < new Date()){
+      if ( selectedDates[0] < new Date() || selectedDates[0] === new Date()){
         iziToast.show({
-          title: 'Error',
-          message: 'Please choose a date in the future'
+          message: 'Please choose a date in the future',
+          position: 'topRight',
+          color: 'red',
+          icon: 'ico-error',
         });
           startBtn.disabled = true;
       }else{
@@ -39,11 +40,13 @@ function onTimerStart() {
     dateInput.disabled = true;
     const intervalId = setInterval(() => {
         const time = convertMs(userSelectedDate - new Date());
+        updateTimer(time);
         if (time.days === 0 && time.hours === 0 && time.minutes === 0 && time.seconds === 0) {
             clearInterval(intervalId);
+            startBtn.disabled = false;
+            dateInput.disabled = false;
             return;
         }
-        updateTimer(time);
     }, 1000);
 }
 
